@@ -78,5 +78,5 @@ if __name__ == '__main__':
     a = App()
     print(f'sense_counter: {(App.sense_counter)}')
     print(f'non sense_counter: {(App.no_sense_counter)}')  
-    sys.exit("sayım bitti")
+    sys.exit("finished, bye...")
         
