@@ -33,7 +33,7 @@ class evolution():
     def __init__(self, N, population: list[agent]): 
         self.m = 15
         self.N = N
-        self.population = {i: population[i] for i in range(N)}
+        self.population: agent = {i: population[i] for i in range(N)}
         self.update_probabilities()
 
     def update_probabilities(self):
@@ -55,7 +55,7 @@ class evolution():
         child_gene = np.hstack((parent0[:cut],parent1[cut:]))
         return child_gene
     
-    def mutation(self, child_gene, p = 1):
+    def mutation(self, child_gene, p = 0.9):
         mutation_point = np.random.randint(len(child_gene))
         if np.random.rand() < p:
             child_gene[mutation_point] = np.random.rand() * 10
@@ -97,4 +97,12 @@ def evolve(genome: str):
    
     best = world.evolve(G = 50)
     print(f'best: {best.fitness()}')
-    return genome_list
+
+    new_population = world.population
+    new_genome_list = []
+
+    
+    for i in range(N):
+        new_genome_list.append(new_population[i].genome)
+
+    return new_genome_list
